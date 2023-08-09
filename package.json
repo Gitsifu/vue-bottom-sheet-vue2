@@ -12,7 +12,8 @@
     "build:ssr": "rimraf dist && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "rimraf dist && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "rimraf dist && cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "size": "size-limit"
+    "size": "size-limit",
+    "publish": "npm publish --access=public"
   },
   "keywords": [
     "vue",
