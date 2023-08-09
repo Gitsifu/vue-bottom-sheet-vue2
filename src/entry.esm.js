@@ -1,4 +1,3 @@
-
 // Import vue component
 import component from '@/vue-bottom-sheet-vue2.vue';
 
@@ -6,14 +5,14 @@ import component from '@/vue-bottom-sheet-vue2.vue';
 // IIFE injects install function into component, allowing component
 // to be registered via Vue.use() as well as Vue.component(),
 export default /*#__PURE__*/(() => {
-  // Get component instance
-  const installable = component;
+    // Get component instance
+    const installable = component;
 
-  // Attach install function executed by Vue.use()
-  installable.install = (Vue) => {
-    Vue.component('VueBottomSheetVue2', installable);
-  };
-  return installable;
+    // Attach install function executed by Vue.use()
+    installable.install = (Vue) => {
+        Vue.component('VueBottomSheetVue2', installable);
+    };
+    return installable;
 })();
 
 // It's possible to expose named exports when writing components that can
