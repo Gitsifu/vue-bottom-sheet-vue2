@@ -1,6 +1,6 @@
 {
-  "name": "@webzlodimir/vue-bottom-sheet-vue2",
-  "version": "0.0.5",
+  "name": "@nclsm/vue-bottom-sheet-vue2",
+  "version": "1.0.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -72,6 +72,6 @@
     "vue": "^2.6.12"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   }
 }

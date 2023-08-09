@@ -1,9 +1,9 @@
 ![Example](https://bs.vaban.ru/logo.jpg)
 
 # Vue Bottom Sheet Vue 2
-![Size](https://img.shields.io/bundlephobia/minzip/@webzlodimir/vue-bottom-sheet-vue2)
-![Downloads](https://img.shields.io/npm/dt/@webzlodimir/vue-bottom-sheet-vue2)
-![Version](https://img.shields.io/npm/v/@webzlodimir/vue-bottom-sheet-vue2)
+![Size](https://img.shields.io/bundlephobia/minzip/@nclsm/vue-bottom-sheet-vue2)
+![Downloads](https://img.shields.io/npm/dt/@nclsm/vue-bottom-sheet-vue2)
+![Version](https://img.shields.io/npm/v/@nclsm/vue-bottom-sheet-vue2)
 
 A nice clean and touch-friendly bottom sheet component based on [Vue.js 2](https://vuejs.org/) and [hammer.js](https://hammerjs.github.io/) for Vue 2
 
@@ -15,13 +15,13 @@ A nice clean and touch-friendly bottom sheet component based on [Vue.js 2](https
 ### NPM
 
 ```
-npm install @webzlodimir/vue-bottom-sheet-vue2
+npm install @nclsm/vue-bottom-sheet-vue2
 ```
 
 ### Yarn
 
 ```
-yarn add @webzlodimir/vue-bottom-sheet-vue2
+yarn add @nclsm/vue-bottom-sheet-vue2
 ```
 
 ## Usage
@@ -38,7 +38,7 @@ yarn add @webzlodimir/vue-bottom-sheet-vue2
 </template>
 
 <script>
-  import  VueBottomSheetVue2 from "@webzlodimir/vue-bottom-sheet-vue2";
+  import  VueBottomSheetVue2 from "@nclsm/vue-bottom-sheet-vue2";
 
   export default {
     components: {
