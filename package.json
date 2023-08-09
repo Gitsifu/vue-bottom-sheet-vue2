@@ -4,7 +4,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webzlodimir/vue-bottom-sheet-vue2.git"
+    "url": "git+https://github.com/Gitsifu/vue-bottom-sheet-vue2.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
@@ -23,9 +23,9 @@
   "author": "webzlodimir",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/webzlodimir/vue-bottom-sheet-vue2/issues"
+    "url": "https://github.com/Gitsifu/vue-bottom-sheet-vue2/issues"
   },
-  "homepage": "https://github.com/webzlodimir/vue-bottom-sheet-vue2#readme",
+  "homepage": "https://github.com/Gitsifu/vue-bottom-sheet-vue2#readme",
   "size-limit": [
     {
       "path": "dist/vue-bottom-sheet-vue2.min.js",

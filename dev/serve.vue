@@ -1,5 +1,5 @@
 <template>
-  <div class="container pt-5 pb-5">
+  <div class="container pt-5" style="padding-bottom: 1000px;">
     <h1>Vue Bottom Sheet</h1>
     <p>
       A nice clean and touch-friendly bottom sheet component based on
@@ -72,6 +72,18 @@
               class="form-control"
           />
         </div>
+          <div class="form-group mb-3">
+              <label for="closeHeightPercent" class="form-label">Close Height Percent (%):</label>
+              <input
+                  name="closeHeightPercentInput"
+                  type="number"
+                  min="0"
+                  max="100"
+                  id="closeHeightPercentInput"
+                  v-model="closeHeightPercent"
+                  class="form-control"
+              />
+          </div>
       </div>
     </div>
     <button class="btn btn-primary" type="button" @click="open">Open bottom sheet</button>
@@ -80,6 +92,7 @@
         :transition-duration="0.5"
         :max-width="maxWidth"
         :max-height="maxHeight"
+        :close-height-percent="closeHeightPercent"
         :overlay="overlay"
         :can-swipe="canSwipe"
         :overlay-color="overlayColorSelect"
@@ -154,7 +167,8 @@ export default Vue.extend({
     return {
       overlay: true,
       maxWidth: 640,
-      maxHeight: undefined,
+      maxHeight: 640,
+      closeHeightPercent: 50,
       overlayColorSelect: "#0000004D",
       backgroundScrollable: false,
       backgroundClickable: false,
@@ -184,7 +198,7 @@ export default Vue.extend({
 </script>
 
 <style>
-@import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css";
+@import "./bootstrap.min.css";
 
 .sheet-content {
   padding: 20px;

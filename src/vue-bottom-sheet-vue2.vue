@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom-sheet" ref="bottomSheet" :aria-hidden="!showSheet" role="dialog">
+  <div class="bottom-sheet" ref="bottomSheet" :aria-hidden="!showSheet" role="dialog" @click.stop>
     <transition name="fade">
       <div
           :style="{ backgroundColor: overlayColor }"
@@ -24,7 +24,7 @@
         </div>
         <slot name="header" />
       </header>
-      <main ref="bottomSheetMain" class="bottom-sheet__main">
+      <main ref="bottomSheetMain" class="bottom-sheet__main" :style="{overflowY: showSheet ? 'auto' : 'hidden'}">
         <slot />
       </main>
       <footer ref="bottomSheetFooter" class="bottom-sheet__footer">
@@ -55,6 +55,13 @@ export default {
       type: Number,
       default: undefined
     },
+      /**
+       * 设置关闭状态时占比全开时的高度百分比，取值0-100，100为全关
+       */
+      closeHeightPercent: {
+          type: Number,
+          default: 50
+      },
     overlayClickClose: {
       type: Boolean,
       default: true
@@ -62,12 +69,16 @@ export default {
     canSwipe: {
       type: Boolean,
       default: true
-    }
+    },
+      transitionDuration: {
+          type: Number,
+          default: 0.5
+      }
   },
   data() {
     return {
       showSheet: false,
-      translateValue: 100,
+      translateValue: this.closeHeightPercent,
       isDragging: false,
       contentScroll: 0,
       sheetHeight: 0
@@ -92,43 +103,82 @@ export default {
         const preventDefault = (e) => {
           e.preventDefault()
         }
+          if (type === 'main') {
+              this.contentScroll = this.$refs.bottomSheetMain.scrollTop
+              document.documentElement.style.overflowY = 'hidden'
+              document.documentElement.style.overscrollBehavior = 'none'
+          }
+        // 如果是全开的状态
+        if(this.showSheet){
+            if (event.deltaY > 0) {
+                if (type === 'main' && event.type === 'panup') {
+                    this.translateValue = this.pixelToVh(event.deltaY)
+                    if (event.cancelable) {
+                        this.$refs.bottomSheetMain.addEventListener('touchmove', preventDefault)
+                    }
+                }
 
-        if (event.deltaY > 0) {
-          if (type === 'main' && event.type === 'panup') {
-            this.translateValue = this.pixelToVh(event.deltaY)
-            if (event.cancelable) {
-              this.$refs.bottomSheetMain.addEventListener('touchmove', preventDefault)
+                if (type === 'main' && event.type === 'pandown' && this.contentScroll === 0) {
+                    this.translateValue = this.pixelToVh(event.deltaY)
+                }
+
+                if (type === 'area') {
+                    this.translateValue = this.pixelToVh(event.deltaY)
+                }
+
+                if (event.type === 'panup') {
+                    this.$emit('dragging-up')
+                }
+                if (event.type === 'pandown') {
+                    this.$emit('dragging-down')
+                }
             }
-          }
+        }else {
+            if (type === 'main' && event.type === 'panup') {
+                if (event.cancelable) {
+                    this.$refs.bottomSheetMain.addEventListener('touchmove', preventDefault)
+                }
+                let tslVal = this.closeHeightPercent + this.pixelToVh(event.deltaY)
+                if(tslVal >= 0){
+                    this.translateValue = tslVal
+                }
+            }
+            if (type === 'main' && event.type === 'pandown' && this.contentScroll === 0) {
+                this.translateValue = this.closeHeightPercent + this.pixelToVh(event.deltaY)
+            }
 
-          if (type === 'main' && event.type === 'pandown' && this.contentScroll === 0) {
-            this.translateValue = this.pixelToVh(event.deltaY)
-          }
+            if (type === 'area') {
+                let tslVal = this.closeHeightPercent + this.pixelToVh(event.deltaY)
+                if(tslVal >= 0){
+                    this.translateValue = tslVal
+                }
+            }
 
-          if (type === 'area') {
-            this.translateValue = this.pixelToVh(event.deltaY)
-          }
-
-          if (event.type === 'panup') {
-            this.$emit('dragging-up')
-          }
-          if (event.type === 'pandown') {
-            this.$emit('dragging-down')
-          }
+            if (event.type === 'panup') {
+                this.$emit('dragging-up')
+            }
+            if (event.type === 'pandown') {
+                this.$emit('dragging-down')
+            }
         }
 
         if (event.isFinal) {
           this.$refs.bottomSheetMain.removeEventListener('touchmove', preventDefault)
-
-          if (type === 'main') {
-            this.contentScroll = this.$refs.bottomSheetMain.scrollTop
-          }
           this.isDragging = false
-          if (this.translateValue >= 10) {
-            this.close()
-          } else {
-            this.translateValue = 0
-          }
+            // 如果是全开的状态
+            if(this.showSheet){
+                if ((this.pixelToVh(event.deltaY) >= 15 && this.contentScroll === 0) || (this.pixelToVh(event.deltaY) >= 15 && type === 'area')) {
+                    this.close()
+                }else {
+                    this.open()
+                }
+            }else {
+                if(this.pixelToVh(event.deltaY) <= -5) {
+                    this.open()
+                }else {
+                    this.close()
+                }
+            }
         }
       }
     },
@@ -137,13 +187,15 @@ export default {
           this.maxHeight && this.maxHeight <= this.sheetHeight ? this.maxHeight : this.sheetHeight
       return (pixel / height) * 100
     },
-    close() {
+    close(isInit = false) {
       this.showSheet = false
-      this.translateValue = 100
+      this.translateValue = this.closeHeightPercent
       setTimeout(() => {
         document.documentElement.style.overflowY = 'auto'
         document.documentElement.style.overscrollBehavior = ''
-        this.$emit('closed')
+        if(isInit){
+          this.$emit('closed')
+        }
       }, this.transitionDuration * 1000)
     },
     open() {
@@ -191,7 +243,9 @@ export default {
      hammerMainInstance.on('panstart panup pandown panend', (e) => {
        this.dragHandler(e, 'main')
      })
+     this.close(true)
    }, 100)
+
   },
   computed: {
     sheetContentClasses() {
@@ -243,7 +297,7 @@ export default {
   }
 
   &[aria-hidden='true'] {
-    visibility: hidden;
+    //visibility: hidden;
     pointer-events: none;
   }
 
@@ -296,6 +350,7 @@ export default {
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     touch-action: auto !important;
+    height: 100%;
 
     &::-webkit-scrollbar {
       height: 8px;
