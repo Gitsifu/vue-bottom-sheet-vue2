@@ -20,7 +20,9 @@
         >
             <header ref="bottomSheetHeader" class="bottom-sheet__header">
                 <div class="bottom-sheet__draggable-area" ref="bottomSheetDraggableArea">
-                    <div class="bottom-sheet__draggable-thumb"></div>
+                    <slot name="drag">
+                        <div class="bottom-sheet__draggable-thumb" :style="{backgroundColor: dragColor}"></div>
+                    </slot>
                 </div>
                 <slot name="header"/>
             </header>
@@ -74,6 +76,20 @@ export default {
         transitionDuration: {
             type: Number,
             default: 0.5
+        },
+        /**
+         * 拖拽栏图标颜色
+         */
+        dragColor: {
+            type: String,
+            default: '#333333'
+        },
+        /**
+         * 组件自定义类名
+         */
+        customClass: {
+            type: String,
+            default: ''
         }
     },
     data() {
@@ -254,8 +270,9 @@ export default {
                 'bottom-sheet__content',
                 {
                     'bottom-sheet__content--fullscreen': this.sheetHeight >= window.innerHeight,
-                    'bottom-sheet__content--dragging': this.isDragging
-                }
+                    'bottom-sheet__content--dragging': this.isDragging,
+                },
+                this.customClass
             ]
         },
         maxWidthString() {

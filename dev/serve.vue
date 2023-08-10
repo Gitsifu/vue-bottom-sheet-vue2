@@ -97,6 +97,7 @@
             :can-swipe="canSwipe"
             :overlay-color="overlayColorSelect"
             ref="myBottomSheet"
+            custom-class="bg-color"
         >
             <div class="sheet-content">
                 <p>
@@ -197,8 +198,12 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss" scoped>
 @import "./bootstrap.min.css";
+
+::v-deep .bg-color{
+    background-color: #ffc107;
+}
 
 .sheet-content {
     padding: 20px;
