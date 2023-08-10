@@ -10,7 +10,7 @@ A nice clean and touch-friendly bottom sheet component based on [Vue.js 2](https
 and [hammer.js](https://hammerjs.github.io/) for Vue 2
 
 - [Vue 3 Version](https://github.com/vaban-ru/vue-bottom-sheet)
-- :clapper: [Demo](https://gitsifu.github.io/guide/vue-bottom-sheet-vue2-demo/)
+- :clapper: [Demo](https://gitsifu.github.io/vue-bottom-sheet-vue2/)
 - [中文文档](https://github.com/Gitsifu/vue-bottom-sheet-vue2/blob/master/README_CN.md)
 
 ## Installation
