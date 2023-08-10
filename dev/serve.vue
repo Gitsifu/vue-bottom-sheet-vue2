@@ -95,7 +95,7 @@
             :close-height-percent="closeHeightPercent"
             :overlay="overlay"
             :can-swipe="canSwipe"
-            :overlay-color="overlayColorSelect"
+            :overlay-color="overlyHexColor"
             ref="myBottomSheet"
             custom-class="bg-color"
         >
