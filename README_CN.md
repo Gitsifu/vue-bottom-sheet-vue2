@@ -11,6 +11,7 @@
 
 - [Vue 3 Version](https://github.com/vaban-ru/vue-bottom-sheet)
 - [Demo](https://gitsifu.github.io/vue-bottom-sheet-vue2/)
+- [英文文档](https://github.com/Gitsifu/vue-bottom-sheet-vue2/blob/master/README.md)
 
 ## 安装
 
@@ -61,17 +62,18 @@ export default {
 
 ## Props
 
-| Prop                    | Type     | Description                       | Example                         | Defaults   |
-|:------------------------|:---------|:----------------------------------|:--------------------------------|:-----------|
-| max-width               | Number   | 设置组件的最大宽度，单位px                    | `:max-width="640"`              | 640        |
-| max-height              | Number   | 设置窗口的最大高度，如果未设置，则采用内容的高度          | `:max-height="90"`              | -          |
-| close-height-percent    | Number   | 设置关闭状态时占比全开时的高度百分比，取值0-100，100为全关 | `:max-height="50"`              | 100        |
-| can-swipe               | Boolean  | 启用或禁用滑动关闭                         | `:can-swipe="false"`            | true       |
-| overlay                 | Boolean  | 是否启用遮罩层                           | `:overlay="false"`              | true       |
-| overlay-color           | String   | 遮罩层颜色                             | `overlay-color="#0000004D"`     | #0000004D  |
-| overlay-click-close     | Boolean  | 点击遮罩层是否可关闭卡片                      | `:overlay-click-close="false"`  | true       |
-| drag-color `v1.2.0`     | String   | 拖拽栏图标颜色                           | `drag-color="#ffc107"`          | #333333    |
-| custom-class `v1.2.0`   | String   | 组件自定义类名                           | `custom-class="custom-style"`   | ''         |
+| Prop                       | Type    | Description                       | Example                        | Defaults  |
+|:---------------------------|:--------|:----------------------------------|:-------------------------------|:----------|
+| max-width                  | Number  | 设置组件的最大宽度，单位px                    | `:max-width="640"`             | 640       |
+| max-height                 | Number  | 设置窗口的最大高度，如果未设置，则采用内容的高度          | `:max-height="90"`             | -         |
+| close-height-percent       | Number  | 设置关闭状态时占比全开时的高度百分比，取值0-100，100为全关 | `:max-height="50"`             | 100       |
+| can-swipe                  | Boolean | 启用或禁用滑动关闭                         | `:can-swipe="false"`           | true      |
+| overlay                    | Boolean | 是否启用遮罩层                           | `:overlay="false"`             | true      |
+| overlay-color              | String  | 遮罩层颜色                             | `overlay-color="#0000004D"`    | #0000004D |
+| overlay-click-close        | Boolean | 点击遮罩层是否可关闭卡片                      | `:overlay-click-close="false"` | true      |
+| drag-color `v1.2.0`        | String  | 拖拽栏图标颜色                           | `drag-color="#ffc107"`         | #333333   |
+| custom-class `v1.2.0`      | String  | 组件自定义类名                           | `custom-class="custom-style"`  | ''        |
+| init-sheet-height `v1.3.0` | Number  | 设置窗口的初始高度，如果未设置，则采用内容高度           | `:init-sheet-height="300"`     | -         |
 
 ### custom-class说明
 

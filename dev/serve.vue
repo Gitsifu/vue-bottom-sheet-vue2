@@ -79,6 +79,16 @@
                     />
                 </div>
                 <div class="form-group mb-3">
+                    <label for="initSheetHeight" class="form-label">Init sheet height (px):</label>
+                    <input
+                        name="initSheetHeight"
+                        type="number"
+                        id="initSheetHeight"
+                        v-model.number="initSheetHeight"
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group mb-3">
                     <label for="closeHeightPercent" class="form-label">Close Height Percent (%):</label>
                     <input
                         name="closeHeightPercentInput"
@@ -103,6 +113,7 @@
             :can-swipe="canSwipe"
             :overlay-color="overlyHexColor"
             :drag-color="dragHexColor"
+            :init-sheet-height="initSheetHeight"
             ref="myBottomSheet"
             custom-class="bg-color"
         >
@@ -174,6 +185,7 @@ export default Vue.extend({
     data() {
         return {
             overlay: true,
+            initSheetHeight: undefined,
             maxWidth: 640,
             maxHeight: 640,
             closeHeightPercent: 100,

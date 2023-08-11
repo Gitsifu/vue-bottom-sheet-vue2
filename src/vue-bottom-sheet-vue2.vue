@@ -90,7 +90,14 @@ export default {
         customClass: {
             type: String,
             default: ''
-        }
+        },
+        /**
+         * 设置窗口的初始高度，如果未设置，则采用内容高度
+         */
+        initSheetHeight: {
+            type: Number,
+            default: undefined
+        },
     },
     data() {
         return {
@@ -103,10 +110,10 @@ export default {
     },
     methods: {
         initHeight() {
-            this.sheetHeight =
-                this.$refs.bottomSheetHeader.offsetHeight +
+            this.sheetHeight = this.initSheetHeight ??
+                (this.$refs.bottomSheetHeader.offsetHeight +
                 this.$refs.bottomSheetMain.offsetHeight +
-                this.$refs.bottomSheetFooter.offsetHeight
+                this.$refs.bottomSheetFooter.offsetHeight)
         },
         clickOnOverlayHandler() {
             if (this.overlayClickClose) {
@@ -263,6 +270,11 @@ export default {
             this.close(true)
         }, 100)
 
+    },
+    watch: {
+      initSheetHeight(newVal, oldVal){
+          this.initHeight()
+      }
     },
     computed: {
         sheetContentClasses() {
