@@ -187,7 +187,7 @@ export default Vue.extend({
             overlay: true,
             initSheetHeight: undefined,
             maxWidth: 640,
-            maxHeight: 640,
+            maxHeight: undefined,
             closeHeightPercent: 100,
             overlayColorSelect: "#0000004D",
             dragColorSelect: "#333333ff",
