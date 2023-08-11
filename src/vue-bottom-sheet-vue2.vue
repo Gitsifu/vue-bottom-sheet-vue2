@@ -217,7 +217,7 @@ export default {
             setTimeout(() => {
                 document.documentElement.style.overflowY = 'auto'
                 document.documentElement.style.overscrollBehavior = ''
-                if (isInit) {
+                if (!isInit) {
                     this.$emit('closed')
                 }
             }, this.transitionDuration * 1000)
