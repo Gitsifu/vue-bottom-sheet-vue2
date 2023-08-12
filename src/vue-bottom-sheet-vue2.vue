@@ -1,5 +1,5 @@
 <template>
-    <div class="bottom-sheet" ref="bottomSheet" :aria-hidden="!showSheet" role="dialog" @click.stop>
+    <div class="bottom-sheet" :style="{zIndex: zIndex}" ref="bottomSheet" :aria-hidden="!showSheet" role="dialog" @click.stop>
         <transition name="fade">
             <div
                 :style="{ backgroundColor: overlayColor }"
@@ -98,6 +98,10 @@ export default {
             type: Number,
             default: undefined
         },
+        zIndex: {
+            type: Number,
+            default: 99999
+        }
     },
     data() {
         return {

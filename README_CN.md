@@ -74,6 +74,7 @@ export default {
 | drag-color `v1.2.0`        | String  | 拖拽栏图标颜色                           | `drag-color="#ffc107"`         | #333333   |
 | custom-class `v1.2.0`      | String  | 组件自定义类名                           | `custom-class="custom-style"`  | ''        |
 | init-sheet-height `v1.3.0` | Number  | 设置窗口的初始高度，如果未设置，则采用内容高度           | `:init-sheet-height="300"`     | -         |
+| z-index `v1.3.2`           | Number  | 设置窗口的z-index                      | `:z-index="1001"`              | 99999         |
 
 ### custom-class说明
 
